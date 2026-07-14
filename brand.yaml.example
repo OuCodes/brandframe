@@ -1,0 +1,23 @@
+schema_version: 1
+
+project:
+  key: example_ops
+  name: Example Operations
+
+brand:
+  key: example
+  name: Example Brand
+
+paths:
+  data: data
+  reports: data/reports
+
+integrations:
+  meta:
+    accounts:
+      - act_123456789
+    credentials:
+      shared_ref: meta.operator_default
+
+reports: {}
+cron: {}
