@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from brandframe.cli.main import main
 
 
@@ -69,3 +71,11 @@ def test_guard_account_command_accepts_allowlisted_account(tmp_path: Path, capsy
     write_config(path)
     main(["guard-account", "--config", str(path), "123"])
     assert "account allowed: meta -> 123" in capsys.readouterr().out
+
+
+def test_invalid_command_reports_argparse_error(capsys: pytest.CaptureFixture[str]) -> None:
+    with pytest.raises(SystemExit) as exc:
+        main(["unknown"])
+
+    assert exc.value.code == 2
+    assert "argument command: invalid choice: 'unknown'" in capsys.readouterr().err

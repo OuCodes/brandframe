@@ -123,6 +123,3 @@ def main(argv: list[str] | None = None) -> None:
         return
     if args.command == "guard-account":
         _guard_account(args)
-        return
-
-    parser.error(f"unsupported command: {args.command}")
